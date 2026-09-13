@@ -16,10 +16,10 @@ s.recChannels = 4;
 Tdef(\x, {
 Buffer.freeAll;
 (
-~c1 = Buffer.readChannel(s,"/Users/amimid/Music/SuperCollider Recordings/SC_250808_235309.aiff",channels:0 );//flu
-~c2 = Buffer.readChannel(s,"/Users/amimid/Music/SuperCollider Recordings/SC_250808_235309.aiff",channels:1 );//bru
-~c3 = Buffer.readChannel(s,"/Users/amimid/Music/SuperCollider Recordings/SC_250808_235309.aiff",channels:2 );//bld
-~c4 = Buffer.readChannel(s,"/Users/amimid/Music/SuperCollider Recordings/SC_250808_235309.aiff",channels:3 );//frd
+~c1 = Buffer.readChannel(s,,channels:0 );//flu
+~c2 = Buffer.readChannel(s,,channels:0 );//bru
+~c3 = Buffer.readChannel(s,,channels:0 );//bld
+~c4 = Buffer.readChannel(s,,channels:0 );//frd
 );
 ///w=flu+frd+bld+bru
 //x=flu+frd-bld-bru
@@ -28,33 +28,33 @@ Buffer.freeAll;
 1.wait;
 (
 (
-{Out.ar(0,
+{Out.ar(0,(
 	PlayBuf.ar(1, ~c1.bufnum, BufRateScale.kr(~c1), loop: 0,doneAction:2)+
 	PlayBuf.ar(1, ~c2.bufnum, BufRateScale.kr(~c2), loop: 0,doneAction:2)+
 	PlayBuf.ar(1, ~c3.bufnum, BufRateScale.kr(~c3), loop: 0,doneAction:2)+
-	PlayBuf.ar(1, ~c4.bufnum, BufRateScale.kr(~c4), loop: 0,doneAction:2))}.play;
+				PlayBuf.ar(1, ~c4.bufnum, BufRateScale.kr(~c4), loop: 0,doneAction:2))/10)}.play;
 
-{Out.ar(1,
+{Out.ar(1,(
 	PlayBuf.ar(1, ~c1.bufnum, BufRateScale.kr(~c1), loop: 0,doneAction:2)-
 	PlayBuf.ar(1, ~c2.bufnum, BufRateScale.kr(~c2), loop: 0,doneAction:2)-
 	PlayBuf.ar(1, ~c3.bufnum, BufRateScale.kr(~c3), loop: 0,doneAction:2)+
-	PlayBuf.ar(1, ~c4.bufnum, BufRateScale.kr(~c4), loop: 0,doneAction:2))}.play;
+				PlayBuf.ar(1, ~c4.bufnum, BufRateScale.kr(~c4), loop: 0,doneAction:2))/10)}.play;
 
-{Out.ar(2,
+{Out.ar(2,(
 	PlayBuf.ar(1, ~c1.bufnum, BufRateScale.kr(~c1), loop: 0,doneAction:2)-
 	PlayBuf.ar(1, ~c2.bufnum, BufRateScale.kr(~c2), loop: 0,doneAction:2)+
 	PlayBuf.ar(1, ~c3.bufnum, BufRateScale.kr(~c3), loop: 0,doneAction:2)-
-	PlayBuf.ar(1, ~c4.bufnum, BufRateScale.kr(~c4), loop: 0,doneAction:2))}.play;
+				PlayBuf.ar(1, ~c4.bufnum, BufRateScale.kr(~c4), loop: 0,doneAction:2))/10)}.play;
 
-{Out.ar(3,
+{Out.ar(3,(
 	 PlayBuf.ar(1, ~c1.bufnum, BufRateScale.kr(~c1), loop: 0,doneAction:2)+
 	PlayBuf.ar(1, ~c2.bufnum, BufRateScale.kr(~c2), loop: 0,doneAction:2)-
 	PlayBuf.ar(1, ~c3.bufnum, BufRateScale.kr(~c3), loop: 0,doneAction:2)-
-	PlayBuf.ar(1, ~c4.bufnum, BufRateScale.kr(~c4), loop: 0,doneAction:2))}.play;
+				PlayBuf.ar(1, ~c4.bufnum, BufRateScale.kr(~c4), loop: 0,doneAction:2))/10)}.play;
 );
 
 
-s.record(numChannels:4,duration:((25*60)+10));
+s.record(numChannels:4,duration:((9*60)+10));
 )
 	((45*60)+15).wait; "aaaaaaaaaaaaaazz".scramble.postln;
 
